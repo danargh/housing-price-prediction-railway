@@ -160,8 +160,11 @@ def predict_house_price():
 
       new_data_pred = meta_model.predict(new_data_combined)
       predicted_price = new_data_pred[0]
+      
+      formatted_prediction = "{:,.0f}".format(predicted_price)
+      formatted_prediction = formatted_prediction.replace(",", ".")
 
-      return render_template('index.html', predicted_price=predicted_price)
+      return render_template('index.html', predicted_price=formatted_prediction)
    else:
       return render_template('index.html')
 
