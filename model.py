@@ -99,14 +99,15 @@ meta_model = RandomForestRegressor(random_state=42)
 meta_model.fit(X_train_combined, y_train)
 
 # Evaluate the meta-model
-train_rmse = mean_squared_error(y_train, meta_model.predict(X_train_combined), squared=False)
+train_mape = mean_absolute_percentage_error(y_train, meta_model.predict(X_train_combined))
 train_r2 = r2_score(y_train, meta_model.predict(X_train_combined))
 train_mae = mean_absolute_error(y_train, meta_model.predict(X_train_combined))
-train_mape = mean_absolute_percentage_error(y_train, meta_model.predict(X_train_combined))
-test_rmse = mean_squared_error(y_test, meta_model.predict(X_test_combined), squared=False)
+train_rmse = mean_squared_error(y_train, meta_model.predict(X_train_combined), squared=False)
+
+test_mape = mean_absolute_percentage_error(y_test, meta_model.predict(X_test_combined))
 test_r2 = r2_score(y_test, meta_model.predict(X_test_combined))
 test_mae = mean_absolute_error(y_test, meta_model.predict(X_test_combined))
-test_mape = mean_absolute_percentage_error(y_test, meta_model.predict(X_test_combined))
+test_rmse = mean_squared_error(y_test, meta_model.predict(X_test_combined), squared=False)
 
 print("Combined Model:")
 print("Training MAPE:", train_mape)
